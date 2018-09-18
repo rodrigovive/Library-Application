@@ -20,11 +20,18 @@ app.use('/js',
 app.set('views', './src/views');
 app.set('view engine', 'ejs');
 
+const books = [
+  {
+    title: 'Algorithm',
+    author: 'Viveros',
+  },
+];
 bookRouter.route('/')
   .get((req, res) => {
     res.render('books', {
       navs: [],
       title: 'Books',
+      books,
     });
   });
 bookRouter.route('/single')
