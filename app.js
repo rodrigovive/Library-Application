@@ -30,7 +30,8 @@ const navs = [
     link: '/author',
   },
 ];
-const bookRouter = require('./src/routes/bookRoute')(navs);
+const bookRouter = require('./src/routes/bookRoutes')(navs);
+const adminRouter = require('./src/routes/adminRoutes')(navs);
 
 app.use(express.static(path.join(__dirname, '/public/')));
 app.use(morgan('tiny'));
@@ -45,6 +46,7 @@ app.set('views', './src/views');
 app.set('view engine', 'ejs');
 
 app.use('/books', bookRouter);
+app.use('/admin', adminRouter);
 
 app.get('/', (req, res) => {
   // res.sendFile(path.join(__dirname, '/views/', '/index.html'));
