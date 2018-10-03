@@ -21,7 +21,7 @@ function router(navs) {
           const user = { username, password };
           const results = await col.insertOne(user);
           req.login(results.ops[0], () => {
-            res.redirect('/auth/profile');
+            res.redirect('/books');
           });
         } catch (e) {
           debug(e);
