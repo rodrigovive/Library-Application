@@ -34,6 +34,17 @@ function router(navs) {
       // res.json(req.body);
     });
   authRouter.route('/profile')
+    .all((req, res, next) => {
+      if (req.user) {
+        navs.push({
+          title: 'Logout',
+          link: '/auth/logout',
+        });
+        next();
+      } else {
+        res.redirect('/');
+      }
+    })
     .get((req, res) => {
       res.json(req.user);
     });
@@ -46,9 +57,16 @@ function router(navs) {
       });
     })
     .post(passport.authenticate('local', {
-      successRedirect: '/auth/profile',
+      successRedirect: '/books',
       failureRedirect: '/',
     }));
+
+  authRouter.route('/logout')
+    .get((req, res) => {
+      req.logout();
+      res.redirect('/');
+    });
+
   return authRouter;
 }
 

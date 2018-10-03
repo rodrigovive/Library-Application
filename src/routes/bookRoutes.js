@@ -11,6 +11,17 @@ function router(navs) {
   //     author: 'Viveros',
   //   },
   // ];
+  bookRouter.use((req, res, next) => {
+    if (req.user) {
+      navs.push({
+        title: 'Logout',
+        link: '/auth/logout',
+      });
+      next();
+    } else {
+      res.redirect('/');
+    }
+  });
   bookRouter.route('/')
     .get((req, res) => {
       const url = 'mongodb://localhost:27017';
