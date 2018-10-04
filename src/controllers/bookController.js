@@ -2,7 +2,7 @@ const debug = require('debug')('app:bookRouter');
 const { MongoClient, ObjectID } = require('mongodb');
 
 
-function bookController(navs) {
+function bookController(bookService, navs) {
   function getIndex(req, res) {
     const url = 'mongodb://localhost:27017';
     const dbName = 'libraryApp';
@@ -42,6 +42,7 @@ function bookController(navs) {
         const collection = await db.collection('books');
         const book = await collection.findOne({ _id: new ObjectID(id) });
         // res.json(books);
+        book.details = await bookService.getBookById(book.bookId);
         res.render('bookView', {
           navs,
           title: 'Books',

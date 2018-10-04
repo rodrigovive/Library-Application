@@ -95,7 +95,7 @@
                         <br>
                         <div class="col-md-2 col-sm-3 text-center">
                             <a class="story-title" href="#"><img alt=""
-                                                                 src="http://api.randomuser.me/portraits/thumb/men/58.jpg"
+                                                                 src="<%= book.details.image_url%>"
                                                                  style="width:100px;height:100px"
                                                                  class="img-circle"></a>
                         </div>
@@ -108,15 +108,12 @@
                                 </div>
                                 <div class="col-xs-3"></div>
                             </div>
+                            <div class="row">
+                                <div class="col-md-12"><%- book.details.description %></div>
+                            </div>
                             <br><br>
                         </div>
                     </div>
-                    <!--/stories-->
-
-
-                    <!--/stories-->
-
-
 
                 </div>
             </div>

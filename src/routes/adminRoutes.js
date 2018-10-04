@@ -11,7 +11,7 @@ const books = [
     read: false,
   },
 ];
-function router(nav) {
+function router(navs) {
   adminRouter.route('/')
     .get((req, res) => {
       const url = 'mongodb://localhost:27017';
